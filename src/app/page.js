@@ -38,6 +38,10 @@ function TrousersIcon() {
   );
 }
 
+// ============ CONFIGURATION ============
+// Paste your deployed Google Apps Script Web App URL here to enable Google Sheet logging:
+const GOOGLE_SCRIPT_URL = "";
+
 export default function Home() {
   // ============ STATE: ZIP CODE VALIDATION ============
   const [zipCode, setZipCode] = useState("");
@@ -277,11 +281,48 @@ export default function Home() {
   const [waitlistHub, setWaitlistHub] = useState("New York");
   const [waitlistInterest, setWaitlistInterest] = useState("Grid Plus");
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleWaitlistSubmit = (e) => {
+  const handleWaitlistSubmit = async (e) => {
     e.preventDefault();
-    if (!waitlistName.trim() || !waitlistEmail.trim()) return;
-    setWaitlistSubmitted(true);
+    if (!waitlistName.trim() || !waitlistEmail.trim() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    const payload = {
+      name: waitlistName.trim(),
+      email: waitlistEmail.trim(),
+      hub: waitlistHub,
+      tier: waitlistInterest,
+    };
+
+    if (GOOGLE_SCRIPT_URL) {
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        setWaitlistSubmitted(true);
+      } catch (err) {
+        console.error("Submission failed:", err);
+        setSubmitError("Failed to submit request. Please verify your connection and try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Simulation mode
+      console.warn("GOOGLE_SCRIPT_URL is not set. Simulating form submission.");
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setWaitlistSubmitted(true);
+      }, 1000);
+    }
   };
 
   // ============ STATE: FAQ ACCORDION ============
@@ -1254,9 +1295,29 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <button type="submit" className="price-cta" style={{ marginTop: "14px", borderPreset: "none", cursor: "pointer", borderColor: "var(--primary)", background: "var(--primary)", color: "white", width: "100%" }}>
-                      Request Early Access →
+                    <button
+                      type="submit"
+                      className="price-cta"
+                      disabled={isSubmitting}
+                      style={{
+                        marginTop: "14px",
+                        borderPreset: "none",
+                        cursor: isSubmitting ? "not-allowed" : "pointer",
+                        borderColor: isSubmitting ? "var(--ink-3)" : "var(--primary)",
+                        background: isSubmitting ? "var(--ink-3)" : "var(--primary)",
+                        color: "white",
+                        width: "100%",
+                        opacity: isSubmitting ? 0.7 : 1,
+                      }}
+                    >
+                      {isSubmitting ? "Submitting Request..." : "Request Early Access →"}
                     </button>
+
+                    {submitError && (
+                      <p style={{ color: "var(--accent)", fontSize: "12.5px", marginTop: "10px", textAlign: "center", fontWeight: "600" }}>
+                        {submitError}
+                      </p>
+                    )}
                   </form>
                 </>
               ) : (
