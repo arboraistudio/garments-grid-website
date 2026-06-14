@@ -1226,7 +1226,7 @@ export default function Home() {
                 <div className="price-headline" style={{ fontSize: "24px", marginBottom: "4px" }}>Pay-by-Weight Plan</div>
                 <div className="price-amount" style={{ marginBottom: "16px" }}>
                   <span className="cur">$</span>
-                  <span className="num">2.00</span>
+                  <span className="num">1.99</span>
                   <span className="per">/ lb</span>
                 </div>
                 <p className="price-pitch" style={{ marginBottom: "16px", borderBottom: "1px solid var(--line)", paddingBottom: "16px", fontSize: "13.5px", lineHeight: 1.5 }}>Perfect for everyday wear, activewear, sheets, and towels. Professional wash, tumble dry, and neatly folded — no pressing included.</p>
