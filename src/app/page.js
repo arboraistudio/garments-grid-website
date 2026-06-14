@@ -40,7 +40,7 @@ function TrousersIcon() {
 
 // ============ CONFIGURATION ============
 // Paste your deployed Google Apps Script Web App URL here to enable Google Sheet logging:
-const GOOGLE_SCRIPT_URL = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtpTu4FOzTZ4JSQ2prVNnSns5rRzo5Q9Jjj0jZogBps8TRd8pwLnZqJsepd9JSygGNQQ/exec";
 
 export default function Home() {
   // ============ STATE: ZIP CODE VALIDATION ============
