@@ -193,7 +193,7 @@ export default function Home() {
     { type: "demand", text: "Demand: New order #4912 checking in from Toronto (Financial District)", time: "09:42:00" },
     { type: "match", text: "Tri-Sync: Auto-dispatching Courier for order #4912", time: "09:42:05" },
     { type: "logistics", text: "Logistics: Courier (James L.) accepted pickup. ETA 12 mins.", time: "09:42:12" },
-    { type: "processing", text: "Processing: Workshop in Calgary checked out order #4899 (boardrooms ready)", time: "09:43:01" }
+    { type: "processing", text: "Processing: Calgary boutique care hub checked out order #4899 (boardroom ready)", time: "09:43:01" }
   ]);
 
   const [activeOrders, setActiveOrders] = useState(14);
@@ -207,8 +207,8 @@ export default function Home() {
     { type: "demand", text: "Demand: New order #{id} logged from {city} ({area})" },
     { type: "match", text: "Tri-Sync: Routed Courier #{courierId} to order #{id}" },
     { type: "logistics", text: "Logistics: Courier #{courierId} locked custody of bag GG-{id}" },
-    { type: "match", text: "Tri-Sync: Matched Order #{id} to Workshop #{workshopId}" },
-    { type: "processing", text: "Processing: Workshop #{workshopId} check-in manifest for order #{id}" },
+    { type: "match", text: "Tri-Sync: Matched Order #{id} to Care Facility #{workshopId}" },
+    { type: "processing", text: "Processing: Facility #{workshopId} checked in manifest for order #{id}" },
     { type: "processing", text: "Processing: Order #{id} - steam-press completed" },
     { type: "logistics", text: "Logistics: Courier #{courierId} dispatched for final delivery" },
     { type: "processing", text: "Processing: Order #{id} verified premium quality. ⌛ {saveTime}m saved." },
@@ -507,8 +507,8 @@ export default function Home() {
                   <div style={{ display: "flex", gap: "10px", alignItems: "start" }}>
                     <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--accent)", color: "white", fontSize: "10px", display: "grid", placeItems: "center", fontWeight: "700", marginTop: "2px", animation: "pulse 2s infinite" }}>•</div>
                     <div>
-                      <div style={{ fontSize: "13px", fontWeight: "600", color: "var(--ink)" }}>Phase 2: Workshop Vetting (Current)</div>
-                      <div style={{ fontSize: "11.5px", color: "var(--ink-3)" }}>Recruiting and verifying municipal hydro/water compliance for local workshops in Winnipeg, Toronto, Montreal, Calgary, NY, and D.C.</div>
+                      <div style={{ fontSize: "13px", fontWeight: "600", color: "var(--ink)" }}>Phase 2: Partner Facility Certification (Current)</div>
+                      <div style={{ fontSize: "11.5px", color: "var(--ink-3)" }}>Vetting and certifying local eco-friendly boutique facilities for premium care and water-efficiency standards across Winnipeg, Toronto, Montreal, Calgary, NY, and D.C.</div>
                     </div>
                   </div>
 
@@ -638,9 +638,9 @@ export default function Home() {
                 onClick={() => handleStepSelect(2)}
                 data-num="3"
               >
-                <h3>Home-based processing</h3>
-                <p>Qualified local workshops clean, press, and fold your items to exact specs, logging photo proof at every milestone.</p>
-                <span className="meta">Insured up to $1,000</span>
+                <h3>Boutique Facility Care</h3>
+                <p>Certified local facilities wash, press, and hand-finish your garments to professional boutique dry-clean standards.</p>
+                <span className="meta">Eco-certified &amp; Insured</span>
               </div>
               <div
                 className={`step reveal-init ${activeStep === 3 ? "active" : ""}`}
@@ -861,7 +861,7 @@ export default function Home() {
                 {/* Step 2: Process */}
                 <div className={`phone-step ${activeStep === 2 ? "active" : ""}`}>
                   <div className="ph-eyebrow">Step 03 / Process</div>
-                  <div className="ph-title">In the workshop</div>
+                  <div className="ph-title">At the Care Facility</div>
                   <div className="process-status">
                     <div className="proc-step done">
                       <div className="proc-icon">
@@ -1085,7 +1085,7 @@ export default function Home() {
                 </div>
                 <div className="console-stat-card">
                   <div className="val">{workshopsLive}</div>
-                  <div className="lbl">Workshops on</div>
+                  <div className="lbl">Facilities Live</div>
                 </div>
               </div>
 
@@ -1421,7 +1421,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h4>24-hour claim window</h4>
-                  <p>Notice a problem? File in-app within 24 hours of delivery. Photo evidence is auto-attached from the launderer&apos;s quality-check log. Decisions within 48 hours, payout within 7.</p>
+                  <p>Notice a problem? File in-app within 24 hours of delivery. Photo evidence is auto-attached from the care partner&apos;s quality-check log. Decisions within 48 hours, payout within 7.</p>
                   <span className="tag">No fax machines. We promise.</span>
                 </div>
               </div>
@@ -1436,7 +1436,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h4>Vetted, qualified, audited</h4>
-                  <p>Every launderer passes a practical qualification exam, background check, and on-site home audit. Workshops must comply with local municipal hydro, water, and sewer by-laws — we verify, not assume.</p>
+                  <p>Every care partner passes a rigorous practical exam, background check, and on-site facility audit. Partner facilities must meet strict quality, textile care, and eco-friendly standards — we verify, not assume.</p>
                   <span className="tag">3.2% acceptance rate</span>
                 </div>
               </div>
@@ -1522,14 +1522,14 @@ export default function Home() {
             <div className={`faq-item reveal-init ${openFaq === 0 ? "open" : ""}`}>
               <div className="faq-q" onClick={() => toggleFaq(0)}>What happens if my clothes are damaged?</div>
               <div className="faq-a" style={{ maxHeight: openFaq === 0 ? "200px" : "0" }}>
-                <div className="faq-a-inner">Open a claim in the app within 24 hours of delivery. Our system auto-pulls the launderer&apos;s photo log for that order. If the damage occurred in our custody, we repair, replace, or pay out up to your plan&apos;s coverage limit — your choice. The decision typically comes within 48 hours; payout hits your account within 7 business days.</div>
+                <div className="faq-a-inner">Open a claim in the app within 24 hours of delivery. Our system auto-pulls the care partner&apos;s photo log for that order. If the damage occurred in our custody, we repair, replace, or pay out up to your plan&apos;s coverage limit — your choice. The decision typically comes within 48 hours; payout hits your account within 7 business days.</div>
               </div>
             </div>
 
             <div className={`faq-item reveal-init ${openFaq === 1 ? "open" : ""}`}>
               <div className="faq-q" onClick={() => toggleFaq(1)}>Who has access to my home or my clothes?</div>
               <div className="faq-a" style={{ maxHeight: openFaq === 1 ? "200px" : "0" }}>
-                <div className="faq-a-inner">Couriers only handle sealed, tamper-evident garment bags — they never see your wardrobe contents. Launderers receive your clothes at their own workshop, never in your home. Background checks are run on every worker; you can see their rating and trip count in-app before they arrive.</div>
+                <div className="faq-a-inner">Couriers only handle sealed, tamper-evident garment bags — they never see your wardrobe contents. Care partners process your clothes at secure, audited partner facilities, never in your home. Background checks are run on every partner; you can see their rating and trip count in-app before they arrive.</div>
               </div>
             </div>
 
@@ -1605,9 +1605,9 @@ export default function Home() {
 
             {/* Process */}
             <div className="join-card process reveal-init">
-              <div className="join-eyebrow">Process for Us · Workshop</div>
-              <h3>Your washer. Our customers. Real margin.</h3>
-              <p className="pitch">Stay-at-home parents, semi-retired professionals, anyone with the equipment and the eye for detail. Process orders on your schedule; we handle the demand and the payments.</p>
+              <div className="join-eyebrow">Process for Us · Care Partner</div>
+              <h3>Your facility. Our customers. Real margin.</h3>
+              <p className="pitch">Dry-cleaners, professional tailors, and independent textile care specialists with high-capacity studios. Process orders on your schedule; we handle the demand, logistics, and payments.</p>
               <div className="earnings-banner">
                 <div>
                   <div className="label">Avg. profit margin</div>
@@ -1620,25 +1620,25 @@ export default function Home() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)", marginTop: "3px" }}>
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Own washer, dryer, and ironing station
+                  High-capacity washing &amp; finishing equipment
                 </li>
                 <li style={{ display: "flex", gap: "8px", alignItems: "start" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)", marginTop: "3px" }}>
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Pass our practical qualification exam (3.2% pass rate)
+                  Pass our rigorous practical care exam (3.2% pass rate)
                 </li>
                 <li style={{ display: "flex", gap: "8px", alignItems: "start" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)", marginTop: "3px" }}>
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Compliance with local hydro / water / sewer by-laws
+                  Eco-friendly operations &amp; water-use compliance
                 </li>
                 <li style={{ display: "flex", gap: "8px", alignItems: "start" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)", marginTop: "3px" }}>
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Dedicated workspace (no shared living areas)
+                  Dedicated commercial workspace or studio
                 </li>
               </ul>
               <a href="#" className="join-cta">Apply to process →</a>
