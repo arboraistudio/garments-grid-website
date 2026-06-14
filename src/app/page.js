@@ -507,8 +507,8 @@ export default function Home() {
                   <div style={{ display: "flex", gap: "10px", alignItems: "start" }}>
                     <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--accent)", color: "white", fontSize: "10px", display: "grid", placeItems: "center", fontWeight: "700", marginTop: "2px", animation: "pulse 2s infinite" }}>•</div>
                     <div>
-                      <div style={{ fontSize: "13px", fontWeight: "600", color: "var(--ink)" }}>Phase 2: Partner Facility Certification (Current)</div>
-                      <div style={{ fontSize: "11.5px", color: "var(--ink-3)" }}>Vetting and certifying local eco-friendly boutique facilities for premium care and water-efficiency standards across Winnipeg, Toronto, Montreal, Calgary, NY, and D.C.</div>
+                      <div style={{ fontSize: "13px", fontWeight: "600", color: "var(--ink)" }}>Phase 2: Boutique Grid Expansion (Current)</div>
+                      <div style={{ fontSize: "11.5px", color: "var(--ink-3)" }}>Onboarding the top 5% of eco-certified laundry specialists to ensure our signature garment-care standards across Winnipeg, Toronto, Montreal, Calgary, NY, and D.C.</div>
                     </div>
                   </div>
 
