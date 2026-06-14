@@ -332,6 +332,48 @@ export default function Home() {
     setOpenFaq((prev) => (prev === idx ? -1 : idx));
   };
 
+  // ============ STATE: FOOTER NEWSLETTER ============
+  const [footerEmail, setFooterEmail] = useState("");
+  const [footerSubmitted, setFooterSubmitted] = useState(false);
+  const [footerSubmitting, setFooterSubmitting] = useState(false);
+
+  const handleFooterSubmit = async (e) => {
+    e.preventDefault();
+    if (!footerEmail.trim() || footerSubmitting) return;
+
+    setFooterSubmitting(true);
+
+    const payload = {
+      name: "Newsletter Lead",
+      email: footerEmail.trim(),
+      hub: "General / Remote",
+      tier: "General Waitlist",
+    };
+
+    if (GOOGLE_SCRIPT_URL) {
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        setFooterSubmitted(true);
+      } catch (err) {
+        console.error("Footer submission failed:", err);
+      } finally {
+        setFooterSubmitting(false);
+      }
+    } else {
+      setTimeout(() => {
+        setFooterSubmitting(false);
+        setFooterSubmitted(true);
+      }, 800);
+    }
+  };
+
   // ============ EFFECT: REVEAL ON SCROLL ============
   useEffect(() => {
     const revealTargets = document.querySelectorAll(".reveal-init");
@@ -1610,10 +1652,26 @@ export default function Home() {
         <div className="container">
           <h2>Stop folding. <em>Start scaling.</em></h2>
           <p>Whether you&apos;re a customer who&apos;s done with laundry or an investor looking at a $10B category — your move.</p>
-          <form className="final-cta-form" onSubmit={(e) => { e.preventDefault(); alert("Thanks! We'll be in touch."); }}>
-            <input type="email" placeholder="Enter your email" required />
-            <button type="submit">Get early access</button>
-          </form>
+          {footerSubmitted ? (
+            <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", padding: "18px 24px", textAlign: "center", color: "var(--bg)", animation: "fadeIn 0.4s ease", maxWidth: "480px", margin: "0 auto" }}>
+              <h4 className="serif" style={{ fontSize: "20px", color: "var(--primary-light, #c2f5e9)", marginBottom: "6px" }}>Invitation Requested</h4>
+              <p style={{ fontSize: "13.5px", margin: 0, opacity: 0.8 }}>We&apos;ve added <strong>{footerEmail}</strong> to the general queue. We&apos;ll reach out as slots become available.</p>
+            </div>
+          ) : (
+            <form className="final-cta-form" onSubmit={handleFooterSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={footerEmail}
+                onChange={(e) => setFooterEmail(e.target.value)}
+                disabled={footerSubmitting}
+                required
+              />
+              <button type="submit" disabled={footerSubmitting} style={{ opacity: footerSubmitting ? 0.7 : 1 }}>
+                {footerSubmitting ? "Submitting..." : "Get early access"}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
