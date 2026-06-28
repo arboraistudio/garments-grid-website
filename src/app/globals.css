@@ -71,12 +71,9 @@ nav {
 .logo-mark {
   width: 32px;
   height: 32px;
+  object-fit: contain;
+  display: block;
   border-radius: 8px;
-  background: var(--primary);
-  display: grid;
-  place-items: center;
-  color: white;
-  position: relative;
 }
 .logo-mark::after {
   content: "";
@@ -667,6 +664,16 @@ nav {
   font-family: var(--font-outfit);
   font-weight: 600;
 }
+
+.stat .num sub {
+  color: var(--accent);
+  font-size: 0.55em;
+  margin-left: 2px;
+  vertical-align: bottom;
+  font-family: var(--font-outfit);
+  font-weight: 600;
+}
+
 .stat .lbl {
   margin-top: 10px;
   font-size: 13.5px;
