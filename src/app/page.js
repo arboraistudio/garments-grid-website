@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 // ============ SVG ICONS ============
 function OxfordIcon() {
@@ -410,9 +411,9 @@ export default function Home() {
       <nav>
         <div className="container nav-inner">
           <a href="#" className="logo" style={{ textDecoration: "none", color: "var(--ink)" }}>
-  <img src="/favicon.ico" alt="Garments Grid logo" className="logo-mark" />
-  Garments Grid
-</a>
+            <Image src="/favicon.ico" alt="Garments Grid logo" width={32} height={32} className="logo-mark" />
+            Garments Grid
+          </a>
           <div className="nav-links">
             <a href="#how">How it works</a>
             <a href="#engine">The Engine</a>
@@ -573,7 +574,7 @@ export default function Home() {
               <div className="lbl"><strong>Annual North American</strong> laundry &amp; dry-clean spend ripe for disruption</div>
             </div>
             <div className="stat reveal-init">
-              <div className="num">6<sub> and more...</sub></div>
+              <div className="num">6<span className="num-aux"> and more...</span></div>
               <div className="lbl"><strong>Launch hubs</strong> including Toronto, Montreal, Calgary, Winnipeg, D.C., and New York</div>
             </div>
             <div className="stat reveal-init">
@@ -1671,9 +1672,9 @@ export default function Home() {
           <div className="footer-grid">
             <div className="footer-col footer-brand">
               <a href="#" className="logo" style={{ textDecoration: "none", color: "var(--bg)" }}>
-  <img src="/favicon.ico" alt="Garments Grid logo" className="logo-mark" />
-  Garments Grid
-</a>
+                <Image src="/favicon.ico" alt="Garments Grid logo" width={32} height={32} className="logo-mark" />
+                Garments Grid
+              </a>
               <p>The on-demand, asset-light marketplace bringing professional washing, pressing, and folding to your door.</p>
             </div>
             <div className="footer-col">
